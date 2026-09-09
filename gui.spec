@@ -1,0 +1,68 @@
+# -*- mode: python ; coding: utf-8 -*-
+from PyInstaller.utils.hooks import collect_data_files
+
+a = Analysis(
+    ['gui.py'],
+    pathex=[],
+    binaries=[],
+    datas=[
+        ('config.yaml', '.'),
+    ],
+    hiddenimports=[
+        'serial',
+        'serial.tools.list_ports',
+        'reportlab',
+        'reportlab.lib.pagesizes',
+        'reportlab.lib.colors',
+        'reportlab.lib.styles',
+        'reportlab.lib.units',
+        'reportlab.lib.enums',
+        'reportlab.platypus',
+        'yaml',
+        'nmea_parser',
+        'boot_parser',
+        'serial_manager',
+        'statistics_calculator',
+        'criteria',
+        'report_generator',
+        'app_paths',
+        'main',
+    ],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[
+        'PyQt5', 'PyQt6', 'PySide2', 'PySide6',
+        'torch', 'torchvision', 'tensorflow', 'keras',
+        'scipy', 'pandas', 'matplotlib',
+        'cv2', 'ultralytics', 'yolo',
+        'IPython', 'jupyter', 'nbformat', 'jedi', 'parso',
+        'lxml', 'gevent', 'shapely', 'fsspec',
+        'zmq', 'sqlalchemy', 'openpyxl', 'pytest',
+        'sympy',
+    ],
+    noarchive=False,
+    optimize=0,
+)
+pyz = PYZ(a.pure)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.datas,
+    [],
+    name='GNSS_AutoTest',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=False,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)

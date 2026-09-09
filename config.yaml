@@ -1,0 +1,59 @@
+serial:
+  baudrate: 115200
+  bytesize: 8
+  parity: N
+  stopbits: 1
+  timeout: 1.0
+modules:
+- id: K601-TEST1
+  port: COM9
+  description: Test Station 1
+- id: K601-TEST2
+  port: COM10
+  description: Test Station 2
+- id: K601-TEST3
+  port: COM11
+  description: Test Station 3
+- id: K601-TEST4
+  port: COM12
+  description: Test Station  4
+test:
+  wait_poweron_timeout: 60
+  sample_count: 20
+  sample_duration: 0
+  collect_mode: "count"
+  send_xtsfwload: true
+  boot_wait_timeout: 30
+output:
+  report_dir: ./reports
+  report_prefix: K601_Test_Report
+criteria:
+  min_fix_quality: 1
+  min_positioned_satellites: 4
+  max_hdop: 2.0
+  min_max_snr: 35.0
+  min_avg_snr: 0.0
+  per_band:
+    GPS L1:
+      min_tracked: 4
+      min_avg_snr: 30.0
+      min_max_snr: 40.0
+    GLO G1:
+      min_tracked: 3
+      min_avg_snr: 30.0
+      min_max_snr: 35.0
+    GAL E1:
+      min_tracked: 3
+      min_avg_snr: 30.0
+      min_max_snr: 40.0
+    BDS B1I:
+      min_tracked: 4
+      min_avg_snr: 30.0
+      min_max_snr: 40.0
+    BDS B2a:
+      min_tracked: 4
+      min_avg_snr: 30.0
+      min_max_snr: 45.0
+meta:
+  batch_no: ''
+  tester: ''
